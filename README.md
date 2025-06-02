@@ -1,2 +1,2 @@
 # Computerized-Adaptive-Testing-Demo
-Demo Streamlit app for Computerized Adaptive Testing (CAT) using Item Response Theory (IRT) to measure the personality trait of learning agility.
+Demo Streamlit app for Computerized Adaptive Testing (CAT) using Item Response Theory (IRT) to measure the personality trait of learning agility. This application allows users to select a prior distribution, respond to a series of adaptive items, and visualize both item characteristic/information curves and the evolving posterior distribution of the latent trait (θ).
