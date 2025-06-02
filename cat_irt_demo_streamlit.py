@@ -15,7 +15,8 @@ LinkedIn: https://www.linkedin.com/in/ludekstehlik/
 import streamlit as st
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
+from matplotlib import pyplot as plt
 
 st.set_page_config(page_title="CAT & IRT Demo", layout="wide")
 
