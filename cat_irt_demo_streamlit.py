@@ -40,30 +40,30 @@ def load_item_bank() -> pd.DataFrame:
             ],
             "c": [0.0] * 24,  # Guessing parameters (set to 0 for this demo)
             "text": [ 
-                "Do you actively seek out tasks or projects that require you to learn completely new skills?",  # b=0.73
-                "Do you believe that learning new things is generally a positive experience?",  # b=-1.65
-                "Are you open to trying new methods even if the old ones work reasonably well?",  # b=-1.08
-                "Do you generally enjoy the process of figuring out something new?",  # b=-0.49
-                "Do you agree that it's important to keep up with new developments in your field of interest?",  # b=-1.74
-                "Do you thrive in situations where you have to quickly master unfamiliar concepts with little guidance?",  # b=1.20
-                "Can you quickly adapt and apply your knowledge effectively when faced with unexpected challenges or novel problems?",  # b=1.06
-                "Do you often find yourself curious about how things work?",  # b=-1.29
-                "When you learn something new, do you usually try to apply it soon after?",  # b=-0.59
-                "Do you consciously reflect on your experiences to identify lessons learned?",  # b=-0.01
-                "Are you comfortable experimenting with new approaches, even if there's a risk of initial failure?",  # b=0.27
-                "Do you actively look for opportunities to expand your knowledge and skills?",  # b=0.16
-                "Are you generally open to hearing new ideas or perspectives?",  # b=-1.76
-                "When you make a mistake, do you focus on what you can learn from it?",  # b=0.20
-                "Are you confident in your ability to learn and master complex new subjects quickly?", # b=0.74
-                "Do you pay attention when someone is explaining something new to you?",  # b=-1.10
-                "Do you deliberately put yourself in highly complex and unfamiliar situations to accelerate your learning, even if it's very demanding?",  # b=2.08
-                "Do you actively seek out feedback on your performance to identify areas for development?",  # b=0.39
-                "When faced with a problem you don't know how to solve, are you resourceful in finding the necessary information or skills?",  # b=0.10
-                "Do you often challenge conventional wisdom or established methods based on new insights you've gained?",  # b=1.60
-                "Do you enjoy tackling problems that require you to acquire new knowledge or skills?",  # b=0.40
-                "Are you driven to explore and master entirely new domains of knowledge, even if they are completely outside your current expertise and comfort zone?",  # b=2.01
-                "After learning something new, do you often think about how it connects to what you already know?",  # b=-0.81
-                "Are you willing to ask questions when you don't understand something new?",  # b=-0.99
+                "Do you actively seek out tasks or projects that require you to learn completely new skills?",  
+                "Do you believe that learning new things is generally a positive experience?",  
+                "Are you open to trying new methods even if the old ones work reasonably well?",  
+                "Do you generally enjoy the process of figuring out something new?",  
+                "Do you agree that it's important to keep up with new developments in your field of interest?",  
+                "Do you thrive in situations where you have to quickly master unfamiliar concepts with little guidance?",  
+                "Can you quickly adapt and apply your knowledge effectively when faced with unexpected challenges or novel problems?",  
+                "Do you often find yourself curious about how things work?",  
+                "When you learn something new, do you usually try to apply it soon after?",  
+                "Do you consciously reflect on your experiences to identify lessons learned?",  
+                "Are you comfortable experimenting with new approaches, even if there's a risk of initial failure?",  
+                "Do you actively look for opportunities to expand your knowledge and skills?",  
+                "Are you generally open to hearing new ideas or perspectives?",  
+                "When you make a mistake, do you focus on what you can learn from it?",  
+                "Are you confident in your ability to learn and master complex new subjects quickly?", 
+                "Do you pay attention when someone is explaining something new to you?",  
+                "Do you deliberately put yourself in highly complex and unfamiliar situations to accelerate your learning, even if it's very demanding?",  
+                "Do you actively seek out feedback on your performance to identify areas for development?",  
+                "When faced with a problem you don't know how to solve, are you resourceful in finding the necessary information or skills?",  
+                "Do you often challenge conventional wisdom or established methods based on new insights you've gained?",  
+                "Do you enjoy tackling problems that require you to acquire new knowledge or skills?",  
+                "Are you driven to explore and master entirely new domains of knowledge, even if they are completely outside your current expertise and comfort zone?",  
+                "After learning something new, do you often think about how it connects to what you already know?",  
+                "Are you willing to ask questions when you don't understand something new?",  
             ],
         }
     )
@@ -248,10 +248,10 @@ def render_cat_page():
                 st.pyplot(fig_i)
         if st.session_state.posterior is not None:
             with col_post:
-                posterior = st.session_state.posterior          # Already normalised
-                cdf = posterior.cumsum()                 # Empirical CDF on the same grid
+                posterior = st.session_state.posterior # Already normalised
+                cdf = posterior.cumsum() # Empirical CDF on the same grid
 
-                # ---------- 95 % equal-tail credible interval ----------
+                # 95 % equal-tail credible interval
                 lo_idx = np.searchsorted(cdf, 0.025)
                 hi_idx = np.searchsorted(cdf, 0.975)
                 lo, hi = THETA_GRID[lo_idx], THETA_GRID[hi_idx]
@@ -301,7 +301,7 @@ def render_cat_page():
 
     st.markdown(
         """
-        The chart on the left displays the psychometric properties for the selected item above, as modeled by the **Three-Parameter Logistic (3PL) model**. The **Item Characteristic Curve** (ICC) shows the probability of endorsing the item at different trait levels. The **Item Information Curve** (IIC) indicates the item's precision for measuring those trait levels (for more details, see the *Item Bank* page). The chart on the right shows the current **posterior distribution** of an individual's ability/trait level (*θ*), estimated from their responses. As responses are gathered, this distribution refines, with the mean of this posterior representing the expected trait level, and the shaded area indicating the 95% Credible Interval for this estimate (for more details, see the *How CAT Works* page).
+        The first chart (on the left) displays the psychometric properties for the selected item above, as modeled by the **Three-Parameter Logistic (3PL) model**. The **Item Characteristic Curve** (ICC) shows the probability of endorsing the item at different trait levels. The **Item Information Curve** (IIC) indicates the item's precision for measuring those trait levels (for more details, see the *Item Bank* page). The second chart (on the right) shows the current **posterior distribution** of an individual's ability/trait level (*θ*), estimated from their responses. As responses are gathered, this distribution refines, with the mean of this posterior representing the expected trait level, and the shaded area indicating the 95% Credible Interval for this estimate (for more details, see the *How CAT Works* page).
         """
     )
 
